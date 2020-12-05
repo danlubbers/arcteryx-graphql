@@ -39,10 +39,10 @@ const Product = () => {
       body: JSON.stringify({ query }),
     })
       .then((res) => res.json())
-      .then(({ data, errors }) => {
-        console.log(data);
+      .then(({ data }) => {
         setProduct(data.arcteryxCollection.items[0]);
-      });
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   const changeColor = (thumbnailIndex) => {
@@ -63,7 +63,7 @@ const Product = () => {
       {product && (
         <img className={styles.productImage} src={jacketColor} alt="" />
       )}
-      <p>{`Select a colour: ${color}`}</p>
+      <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
       <div className={styles.productImagesWrapper}>
         {product &&
           product.imagesCollection.items.map((jacket, index) => {

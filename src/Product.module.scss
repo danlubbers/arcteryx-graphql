@@ -17,6 +17,10 @@
     max-width: 100%;
   }
 
+  .selectColor {
+    margin: 10px 0;
+  }
+
   .productImagesWrapper {
     width: 100%;
     display: flex;
@@ -24,8 +28,9 @@
     justify-content: center;
 
     .productImages {
-      margin: 20px 5px 0;
+      padding: 0 5px;
       width: 55px;
+      height: 75px;
       opacity: 0.2;
     }
     .productImages:hover {
