@@ -19,11 +19,18 @@
 
   .productImagesWrapper {
     width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     .productImages {
       margin: 20px 5px 0;
-      width: 50px;
+      width: 55px;
+      opacity: 0.2;
+    }
+    .productImages:hover {
+      opacity: 1;
+      cursor: pointer;
     }
   }
 }
