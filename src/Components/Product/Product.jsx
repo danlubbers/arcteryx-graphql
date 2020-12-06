@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Product.module.scss";
+// import axios from "axios";
 
 const query = `
   query {
-    arcteryxCollection{
-      items{
+    arcteryxCollection {
+      items {
         title
         description
         price
@@ -27,7 +28,7 @@ const Product = () => {
 
   const spaceID = process.env.REACT_APP_SPACE_ID;
   const graphqlURL = `https://graphql.contentful.com/content/v1/spaces/${spaceID}/`;
-  const ContentfulAPI = process.env.REACT_APP_CONTENT_DELIVERY_API;
+  const ContentfulAPI = process.env.REACT_APP_CDA_TOKEN;
 
   useEffect(() => {
     fetch(graphqlURL, {
@@ -45,12 +46,21 @@ const Product = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     console.log("hit");
+  //     await axios({
+  //       url: `https://graphql.contentful.com/content/v1/spaces/bzodp6cmm4r2/explore?access_token=1VhIaKmvicJFR1-2hASaFY7PZp7ME9xLE2pavpEc6kU`,
+  //       method: "POST",
+  //       data: { query },
+  //     }).then((res) => console.log(res.data));
+  //   })();
+  // }, []);
+
   const changeColor = (thumbnailIndex) => {
-    let filterJacket = product.imagesCollection.items.filter(
-      (jacket, index) => {
-        return thumbnailIndex === index;
-      }
-    );
+    let filterJacket = product.imagesCollection.items.filter((_, index) => {
+      return thumbnailIndex === index;
+    });
     setJacketColor(filterJacket[0].url);
     setColor(filterJacket[0].description);
   };
@@ -61,7 +71,11 @@ const Product = () => {
       <p className={styles.description}>{product && product.description}</p>
       <p className={styles.price}>{product && `$${product.price}`}</p>
       {product && (
-        <img className={styles.productImage} src={jacketColor} alt="" />
+        <img
+          className={styles.productImage}
+          src={jacketColor}
+          alt={product.title}
+        />
       )}
       <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
       <div className={styles.productImagesWrapper}>
