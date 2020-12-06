@@ -5,13 +5,13 @@ import Client from "../contentful";
 export const ContentfulContext = createContext({});
 
 export const ContentfulProvider = (props) => {
-  console.log(props);
+  // console.log(props);
   const [value, setValue] = useState({});
 
   useEffect(() => {
     Client.getEntries().then((res) => setValue(res.items[0]));
   }, []);
-  console.log(value);
+  // console.log(value);
   return (
     <ContentfulContext.Provider value={value}>
       {props.children}
