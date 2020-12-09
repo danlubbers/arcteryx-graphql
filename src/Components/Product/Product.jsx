@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useContentful from "../../hooks/use-contentful";
 import styles from "./Product.module.scss";
-// import axios from "axios";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-const query = `
-  query {
-    arcteryxCollection {
-      items {
-        title
-        description
-        price
-        imagesCollection {
-          items {
-            url
-            description
-          }
+const query = ` 
+query {
+  arcteryxCollection {
+    items {
+      title
+      description {
+        json
+      }
+      price
+      imagesCollection {
+        items {
+          url
+          description
         }
       }
     }
-}`;
+  }
+}
+`;
 
 const Product = () => {
   // Custom HOOK for fetching Contentful Data
   const { product } = useContentful(query);
-  const [jacketColor, setJacketColor] = useState(
-    "https://images.ctfassets.net/bzodp6cmm4r2/67IpiChSavuaVQQhPAUkwx/c26a90f769834c1258392c38bec73e6b/Alpha-SV-Jacket-Glade.png"
-  );
-  const [color, setColor] = useState("Glade");
+  const [jacketColor, setJacketColor] = useState(null);
+  const [color, setColor] = useState(null);
+
+  useEffect(() => {
+    setJacketColor(product && product.imagesCollection.items[1].url);
+    setColor(product && product.imagesCollection.items[1].description);
+  }, [product]);
 
   if (!product) return <span>LOADING...</span>;
 
@@ -41,7 +47,9 @@ const Product = () => {
   return (
     <div className={styles.productsContainer}>
       <p className={styles.title}>{product.title}</p>
-      <p className={styles.description}>{product.description}</p>
+      <p className={styles.description}>
+        {documentToReactComponents(product.description.json)}
+      </p>
       <p className={styles.price}>{`$${product.price}`}</p>
       {
         <img
