@@ -1,20 +1,21 @@
-import { createContext } from "react";
-import React, { useState, useEffect } from "react";
-import Client from "../contentful";
+// *** NO LONGER IN USE *** //
 
-export const ContentfulContext = createContext({});
+// import { createContext } from "react";
+// import React, { useState, useEffect } from "react";
+// import Client from "../contentful";
 
-export const ContentfulProvider = (props) => {
-  // console.log(props);
-  const [value, setValue] = useState({});
+// export const ContentfulContext = createContext({});
 
-  useEffect(() => {
-    Client.getEntries().then((res) => setValue(res.items[0]));
-  }, []);
-  // console.log(value);
-  return (
-    <ContentfulContext.Provider value={value}>
-      {props.children}
-    </ContentfulContext.Provider>
-  );
-};
+// export const ContentfulProvider = (props) => {
+//   const [value, setValue] = useState({});
+
+//   useEffect(() => {
+//     Client.getEntries().then((res) => setValue(res.items[0]));
+//   }, []);
+
+//   return (
+//     <ContentfulContext.Provider value={value}>
+//       {props.children}
+//     </ContentfulContext.Provider>
+//   );
+// };
