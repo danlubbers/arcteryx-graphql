@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useContentful from "../../hooks/use-contentful";
 import styles from "./Product.module.scss";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 
 const query = ` 
 query {
@@ -22,6 +23,14 @@ query {
   }
 }
 `;
+
+const RICHTEXT_OPTIONS = {
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      return <p className={styles.description}>{children}</p>;
+    },
+  },
+};
 
 const Product = () => {
   // Custom HOOK for fetching Contentful Data
@@ -47,9 +56,7 @@ const Product = () => {
   return (
     <div className={styles.productsContainer}>
       <p className={styles.title}>{product.title}</p>
-      <p className={styles.description}>
-        {documentToReactComponents(product.description.json)}
-      </p>
+      {documentToReactComponents(product.description.json, RICHTEXT_OPTIONS)}
       <p className={styles.price}>{`$${product.price}`}</p>
       {
         <img
