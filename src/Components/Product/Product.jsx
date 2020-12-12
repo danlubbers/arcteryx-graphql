@@ -16,6 +16,7 @@ query {
       imagesCollection {
         items {
           url
+          title
           description
         }
       }
@@ -53,6 +54,20 @@ const Product = () => {
     setColor(filterJacket[0].description);
   };
 
+  const thumbnailImages = product.imagesCollection.items
+    .filter((jacket) => jacket.title.includes("thumbnail"))
+    .map((jacket, index) => {
+      return (
+        <img
+          className={styles.productImages}
+          key={`products-${index}`}
+          src={jacket.url}
+          alt={product.title}
+          onClick={() => changeColor(index)}
+        />
+      );
+    });
+
   return (
     <div className={styles.productsContainer}>
       <p className={styles.title}>{product.title}</p>
@@ -66,19 +81,7 @@ const Product = () => {
         />
       }
       <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
-      <div className={styles.productImagesWrapper}>
-        {product.imagesCollection.items.map((jacket, index) => {
-          return (
-            <img
-              className={styles.productImages}
-              key={`products-${index}`}
-              src={jacket.url}
-              alt={product.title}
-              onClick={() => changeColor(index)}
-            />
-          );
-        })}
-      </div>
+      <div className={styles.productImagesWrapper}>{thumbnailImages}</div>
     </div>
   );
 };
