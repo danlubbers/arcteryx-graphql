@@ -47,9 +47,12 @@ const Product = () => {
   if (!product) return <span>LOADING...</span>;
 
   const changeColor = (thumbnailIndex) => {
-    let filterJacket = product.imagesCollection.items.filter((_, index) => {
-      return thumbnailIndex === index;
-    });
+    let filterJacket = product.imagesCollection.items.filter(
+      (jacket, index) => {
+        console.log(jacket.description);
+        return thumbnailIndex === index;
+      }
+    );
     setJacketColor(filterJacket[0].url);
     setColor(filterJacket[0].description);
   };
@@ -59,7 +62,7 @@ const Product = () => {
     .map((jacket, index) => {
       return (
         <img
-          className={styles.productImages}
+          className={styles.thumbnailImages}
           key={`products-${index}`}
           src={jacket.url}
           alt={product.title}
@@ -81,7 +84,7 @@ const Product = () => {
         />
       }
       <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
-      <div className={styles.productImagesWrapper}>{thumbnailImages}</div>
+      <div className={styles.thumbnailImagesWrapper}>{thumbnailImages}</div>
     </div>
   );
 };
