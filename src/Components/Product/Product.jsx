@@ -46,15 +46,13 @@ const Product = () => {
 
   if (!product) return <span>LOADING...</span>;
 
-  const changeColor = (thumbnailIndex) => {
-    let filterJacket = product.imagesCollection.items.filter(
-      (jacket, index) => {
-        console.log(jacket.description);
-        return thumbnailIndex === index;
-      }
-    );
-    setJacketColor(filterJacket[0].url);
-    setColor(filterJacket[0].description);
+  const changeColor = (jacketColor) => {
+    const filterHero = product.imagesCollection.items
+      .filter((heroJacket) => heroJacket.title.includes("hero"))
+      .filter((item) => item.description === jacketColor);
+
+    setJacketColor(filterHero[0].url);
+    setColor(filterHero[0].description);
   };
 
   const thumbnailImages = product.imagesCollection.items
@@ -66,7 +64,7 @@ const Product = () => {
           key={`products-${index}`}
           src={jacket.url}
           alt={product.title}
-          onClick={() => changeColor(index)}
+          onClick={() => changeColor(jacket.description)}
         />
       );
     });
