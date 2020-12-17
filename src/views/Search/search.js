@@ -28,8 +28,8 @@ const graphqlURL = `https://graphql.contentful.com/content/v1/spaces/${REACT_APP
 
 const Search = () => {
   const [products, setProducts] = useState(null);
+  const [productsFound, setProductsFound] = useState(false);
   const [renderProducts, setRenderProducts] = useState([]);
-  const [searchTextLength, setSearchTextLength] = useState(0);
 
   useEffect(() => {
     fetch(graphqlURL, {
@@ -50,7 +50,8 @@ const Search = () => {
   const handleSearch = (searchValue) => {
     let filterProducts = [];
 
-    setSearchTextLength(searchValue.length);
+    searchValue.length > 0 ? setProductsFound(true) : setProductsFound(false);
+
     return (
       products &&
       products.filter((product) => {
@@ -62,7 +63,7 @@ const Search = () => {
       })
     );
   };
-  console.log(searchTextLength);
+
   return (
     <div className={styles.searchContainer}>
       <p>search</p>
@@ -74,7 +75,8 @@ const Search = () => {
         onChange={(e) => handleSearch(e.target.value)}
       />
 
-      {searchTextLength !== 0 &&
+      {productsFound && <p>{renderProducts.length} products found!</p>}
+      {productsFound &&
         renderProducts.map((product, index) => {
           console.log(product);
           return (
