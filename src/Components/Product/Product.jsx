@@ -9,6 +9,7 @@ query {
   arcteryxCollection {
     items {
       title
+      slug
       description {
         json
       }
@@ -19,10 +20,10 @@ query {
           title
           description
         }
+        }
       }
     }
   }
-}
 `;
 
 const RICHTEXT_OPTIONS = {
@@ -33,12 +34,11 @@ const RICHTEXT_OPTIONS = {
   },
 };
 
-const Product = () => {
+const Product = (props) => {
   // Custom HOOK for fetching Contentful Data
-  const { product } = useContentful(query);
+  const { product } = useContentful(query, props.match.params.slug);
   const [jacketColor, setJacketColor] = useState(null);
   const [color, setColor] = useState(null);
-
   useEffect(() => {
     setJacketColor(product && product.imagesCollection.items[1].url);
     setColor(product && product.imagesCollection.items[1].description);

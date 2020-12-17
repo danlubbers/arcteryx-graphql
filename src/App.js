@@ -1,10 +1,13 @@
+import React from "react";
 import "./App.css";
-import Product from "./Components/Product/Product";
+import logo from "./assets/arc-teryx.svg";
+import Products from "./views/products";
 
 function App() {
   return (
     <div className="App">
-      <Product />
+      <img src={logo} alt="logo" style={{ width: 100 }} />
+      <Products />
     </div>
   );
 }

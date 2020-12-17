@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const { REACT_APP_SPACE_ID, REACT_APP_CDA_TOKEN } = process.env;
 const graphqlURL = `https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}/`;
 
-function useContentful(query) {
+function useContentful(query, slug) {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -17,10 +17,13 @@ function useContentful(query) {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        setProduct(data.arcteryxCollection.items[0]);
+        const slugProduct = data.arcteryxCollection.items.filter((item) => {
+          return item.slug === slug && item;
+        });
+        setProduct(slugProduct[0]);
       })
       .catch((err) => console.error(err));
-  }, [query]);
+  }, [query, slug]);
   return { product };
 }
 
