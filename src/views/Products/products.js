@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../views/products.module.scss";
+import styles from "../Products/products.module.scss";
 import { Link } from "react-router-dom";
 
 const query = `
@@ -53,16 +53,16 @@ const Products = () => {
       {product &&
         product.map((jacket, index) => {
           return (
-            <div key={`jackets-${index}`}>
-              <p className={styles.title}>{jacket.title}</p>
-              <Link to={`/product/${jacket.slug}`}>
+            <Link to={`/product/${jacket.slug}`}>
+              <div key={`jackets-${index}`}>
+                <p className={styles.title}>{jacket.title}</p>
                 <img
                   className={styles.jacketImage}
                   src={jacket.imagesCollection.items[0].url}
                   alt={jacket.title}
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })}
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import logo from "./assets/arc-teryx.svg";
-import Products from "./views/products";
+import Products from "./views/Products/products";
 
 function App() {
   return (
