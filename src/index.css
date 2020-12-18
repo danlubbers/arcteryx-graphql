@@ -16,3 +16,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Gets rid of default styling for all input fields ex.inner shadow */
+textarea,
+input:matches(
+  [type="email"],
+  [type="number"],
+  [type="password"],
+  [type="search"],
+  [type="tel"],
+  [type="text"],
+  [type="url"]
+) {
+  font-size: 16px;
+  font-family: "Nunito", sans-serif;
+  -webkit-appearance: none;
+}
