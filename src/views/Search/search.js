@@ -59,7 +59,7 @@ const Search = () => {
       products.filter((product) => {
         setRenderProducts(filterProducts);
         return (
-          product.title.toLowerCase().includes(searchValue) &&
+          product.title.toLowerCase().includes(searchValue.toLowerCase()) &&
           filterProducts.push(product)
         );
       })
