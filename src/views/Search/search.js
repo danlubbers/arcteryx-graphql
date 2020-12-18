@@ -49,18 +49,21 @@ const Search = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleSearch = (searchValue) => {
+  const handleSearch = (searchValues) => {
     let filterProducts = [];
 
-    searchValue.length > 0 ? setProductsFound(true) : setProductsFound(false);
+    searchValues.length > 0 ? setProductsFound(true) : setProductsFound(false);
 
     return (
       products &&
       products.filter((product) => {
         setRenderProducts(filterProducts);
         return (
-          product.title.toLowerCase().includes(searchValue.toLowerCase()) &&
-          filterProducts.push(product)
+          searchValues
+            .split(" ")
+            .every((word) =>
+              product.title.toLowerCase().includes(word.toLowerCase())
+            ) && filterProducts.push(product)
         );
       })
     );
