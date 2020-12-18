@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Search/search.module.scss";
 import Header from "../../Components/Header/Header";
+import { Link } from "react-router-dom";
 
 const query = ` 
 query {
@@ -81,15 +82,17 @@ const Search = () => {
         {productsFound && <p>{renderProducts.length} products found!</p>}
         {productsFound &&
           renderProducts.map((product, index) => {
-            console.log(product);
+            console.log(product.slug);
             return (
               <div className={styles.productsWrapper} key={`product-${index}`}>
-                <p>{product.title}</p>
-                <img
-                  className={styles.productImage}
-                  src={product.imagesCollection.items[0].url}
-                  alt={product.title}
-                />
+                <Link to={`/product/${product.slug}`}>
+                  <p>{product.title}</p>
+                  <img
+                    className={styles.productImage}
+                    src={product.imagesCollection.items[0].url}
+                    alt={product.title}
+                  />
+                </Link>
               </div>
             );
           })}
