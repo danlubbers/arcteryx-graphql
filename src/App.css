@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&display=swap");
 
 .App {    
-  min-height: calc(100vh - 40px);
-  text-align: center;
-  padding: 20px;   
-
+  min-height: calc(100vh);
+  text-align: center;  
 }
 

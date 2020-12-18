@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Search/search.module.scss";
+import Header from "../../Components/Header/Header";
 
 const query = ` 
 query {
@@ -65,32 +66,35 @@ const Search = () => {
   };
 
   return (
-    <div className={styles.searchContainer}>
-      <p>search</p>
-      <input
-        className={styles.searchInput}
-        type="search"
-        name="search"
-        placeholder="search for products"
-        onChange={(e) => handleSearch(e.target.value)}
-      />
+    <>
+      <Header />
+      <div className={styles.searchContainer}>
+        <p>search</p>
+        <input
+          className={styles.searchInput}
+          type="search"
+          name="search"
+          placeholder="search for products"
+          onChange={(e) => handleSearch(e.target.value)}
+        />
 
-      {productsFound && <p>{renderProducts.length} products found!</p>}
-      {productsFound &&
-        renderProducts.map((product, index) => {
-          console.log(product);
-          return (
-            <div className={styles.productsWrapper} key={`product-${index}`}>
-              <p>{product.title}</p>
-              <img
-                className={styles.productImage}
-                src={product.imagesCollection.items[0].url}
-                alt={product.title}
-              />
-            </div>
-          );
-        })}
-    </div>
+        {productsFound && <p>{renderProducts.length} products found!</p>}
+        {productsFound &&
+          renderProducts.map((product, index) => {
+            console.log(product);
+            return (
+              <div className={styles.productsWrapper} key={`product-${index}`}>
+                <p>{product.title}</p>
+                <img
+                  className={styles.productImage}
+                  src={product.imagesCollection.items[0].url}
+                  alt={product.title}
+                />
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

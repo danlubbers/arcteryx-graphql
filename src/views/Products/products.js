@@ -53,16 +53,16 @@ const Products = () => {
       {product &&
         product.map((jacket, index) => {
           return (
-            <Link to={`/product/${jacket.slug}`}>
-              <div key={`jackets-${index}`}>
+            <div key={`jackets-${index}`}>
+              <Link to={`/product/${jacket.slug}`}>
                 <p className={styles.title}>{jacket.title}</p>
                 <img
                   className={styles.jacketImage}
                   src={jacket.imagesCollection.items[0].url}
                   alt={jacket.title}
                 />
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
     </div>
