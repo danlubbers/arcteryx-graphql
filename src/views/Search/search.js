@@ -85,7 +85,7 @@ const Search = () => {
         {productsFound && <p>{renderProducts.length} products found!</p>}
         {productsFound &&
           renderProducts.map((product, index) => {
-            console.log(product.slug);
+            console.log(product);
             return (
               <div className={styles.productsWrapper} key={`product-${index}`}>
                 <Link to={`/product/${product.slug}`}>

@@ -10,9 +10,14 @@ function Header() {
       <Link to="/">
         <img className={styles.logo} src={logo} alt="logo" />
       </Link>
-      <Link to="/search">
-        <FaSearch />
-      </Link>
+      <nav className={styles.navbarWrapper}>
+        <Link to="/products">
+          <p className={styles.productsText}>Products</p>
+        </Link>
+        <Link to="/search">
+          <FaSearch className={styles.search} />
+        </Link>
+      </nav>
     </div>
   );
 }

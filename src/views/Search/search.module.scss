@@ -1,10 +1,13 @@
 .searchContainer {
   text-align: center;
+  font-family: "Nunito", sans-serif;
 
   .searchInput {
     width: 60%;
+    font-size: 16px;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
+    -webkit-appearance: none;
   }
 
   .productImage {

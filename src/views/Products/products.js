@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Products/products.module.scss";
 import { Link } from "react-router-dom";
+import Header from "../../Components/Header/Header";
 
 const query = `
 query {
@@ -49,23 +50,26 @@ const Products = () => {
   // console.log(product);
 
   return (
-    <div className={styles.productsContainer}>
-      {product &&
-        product.map((jacket, index) => {
-          return (
-            <div key={`jackets-${index}`}>
-              <Link to={`/product/${jacket.slug}`}>
-                <p className={styles.title}>{jacket.title}</p>
-                <img
-                  className={styles.jacketImage}
-                  src={jacket.imagesCollection.items[0].url}
-                  alt={jacket.title}
-                />
-              </Link>
-            </div>
-          );
-        })}
-    </div>
+    <>
+      <Header />
+      <div className={styles.productsContainer}>
+        {product &&
+          product.map((jacket, index) => {
+            return (
+              <div key={`jackets-${index}`}>
+                <Link to={`/product/${jacket.slug}`}>
+                  <p className={styles.title}>{jacket.title}</p>
+                  <img
+                    className={styles.jacketImage}
+                    src={jacket.imagesCollection.items[0].url}
+                    alt={jacket.title}
+                  />
+                </Link>
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

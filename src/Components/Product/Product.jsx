@@ -3,7 +3,7 @@ import useContentful from "../../hooks/use-contentful";
 import styles from "./Product.module.scss";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
-
+import Header from "../Header/Header";
 const query = ` 
 query {
   arcteryxCollection {
@@ -70,20 +70,23 @@ const Product = (props) => {
     });
 
   return (
-    <div className={styles.productsContainer}>
-      <p className={styles.title}>{product.title}</p>
-      {documentToReactComponents(product.description.json, RICHTEXT_OPTIONS)}
-      <p className={styles.price}>{`$${product.price}`}</p>
-      {
-        <img
-          className={styles.productImage}
-          src={jacketColor}
-          alt={product.title}
-        />
-      }
-      <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
-      <div className={styles.thumbnailImagesWrapper}>{thumbnailImages}</div>
-    </div>
+    <>
+      <Header />
+      <div className={styles.productsContainer}>
+        <p className={styles.title}>{product.title}</p>
+        {documentToReactComponents(product.description.json, RICHTEXT_OPTIONS)}
+        <p className={styles.price}>{`$${product.price}`}</p>
+        {
+          <img
+            className={styles.productImage}
+            src={jacketColor}
+            alt={product.title}
+          />
+        }
+        <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
+        <div className={styles.thumbnailImagesWrapper}>{thumbnailImages}</div>
+      </div>
+    </>
   );
 };
 
