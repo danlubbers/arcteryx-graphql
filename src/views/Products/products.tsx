@@ -27,7 +27,7 @@ interface jacketProps {
 }
 
 const Products = () => {
-  const { product } = useContentful(query);
+  const { product } = useContentful(query, null);
 
   return (
     <>
