@@ -38,8 +38,6 @@ const Products = () => {
         <div className={styles.productsContainer}>
           {product &&
             product.map((jacket: jacketProps, index: number) => {
-              console.log(jacket);
-
               return (
                 <div key={`jackets-${index}`}>
                   <Link to={`/product/${jacket.slug}`}>

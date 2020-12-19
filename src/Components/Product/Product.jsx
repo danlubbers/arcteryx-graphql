@@ -18,11 +18,16 @@ const RICHTEXT_OPTIONS = {
 const Product = (props) => {
   // Custom HOOK for fetching Contentful Data
   const { product } = useContentful(query, props.match.params.slug);
+  console.log(product);
   const [jacketColor, setJacketColor] = useState(null);
   const [color, setColor] = useState(null);
   useEffect(() => {
-    setJacketColor(product && product.imagesCollection.items[1].url);
-    setColor(product && product.imagesCollection.items[1].description);
+    setJacketColor(
+      product.imagesCollection && product.imagesCollection.items[1].url
+    );
+    setColor(
+      product.imagesCollection && product.imagesCollection.items[1].description
+    );
   }, [product]);
 
   const changeColor = (jacketColor) => {
@@ -36,7 +41,7 @@ const Product = (props) => {
 
   const thumbnailImages = () => {
     return (
-      product &&
+      product.imagesCollection &&
       product.imagesCollection.items
         .filter((jacket) => jacket.title.includes("thumbnail"))
         .map((jacket, index) => {
@@ -62,7 +67,7 @@ const Product = (props) => {
         <div className={styles.productsContainer}>
           <p className={styles.title}>{product && product.title}</p>
           {documentToReactComponents(
-            product && product.description.json,
+            product.description && product.description.json,
             RICHTEXT_OPTIONS
           )}
           <p className={styles.price}>{`$${product && product.price}`}</p>
