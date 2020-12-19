@@ -4,7 +4,7 @@ const { REACT_APP_SPACE_ID, REACT_APP_CDA_TOKEN } = process.env;
 const graphqlURL = `https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}/`;
 
 function useContentful(query, slug) {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     fetch(graphqlURL, {

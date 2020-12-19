@@ -6,6 +6,19 @@ import { query } from "../../utils/contentful-query";
 import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
 
+interface jacketProps {
+  title: string;
+  slug: string;
+  price: number;
+  imagesCollection: {
+    items: {
+      url: string;
+      title: string;
+      description: string;
+    }[];
+  };
+}
+
 const Products = () => {
   const { product } = useContentful(query);
 
@@ -17,7 +30,9 @@ const Products = () => {
       ) : (
         <div className={styles.productsContainer}>
           {product &&
-            product.map((jacket, index) => {
+            product.map((jacket: jacketProps, index: number) => {
+              console.log(jacket);
+
               return (
                 <div key={`jackets-${index}`}>
                   <Link to={`/product/${jacket.slug}`}>
