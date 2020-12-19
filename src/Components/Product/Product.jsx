@@ -20,6 +20,7 @@ const Product = (props) => {
   const { product } = useContentful(query, props.match.params.slug);
   const [jacketColor, setJacketColor] = useState(null);
   const [color, setColor] = useState(null);
+
   useEffect(() => {
     setJacketColor(product && product.imagesCollection.items[1].url);
     setColor(product && product.imagesCollection.items[1].description);
