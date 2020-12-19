@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../Products/products.module.scss";
 import { Link } from "react-router-dom";
 import Header from "../../Components/Header/Header";
+import Loading from "../../Components/Loading/Loading";
 
 const query = `
 query {
@@ -48,6 +49,7 @@ const Products = () => {
   }, []);
 
   // console.log(product);
+  if (!product) return <Loading />;
 
   return (
     <>

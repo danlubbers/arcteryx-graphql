@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../Search/search.module.scss";
 import Header from "../../Components/Header/Header";
 import { Link } from "react-router-dom";
+import Loading from "../../Components/Loading/Loading";
 
 const query = ` 
 query {
@@ -48,6 +49,8 @@ const Search = () => {
       })
       .catch((err) => console.error(err));
   }, []);
+
+  if (!products) return <Loading />;
 
   const handleSearch = (searchValues) => {
     let filterProducts = [];

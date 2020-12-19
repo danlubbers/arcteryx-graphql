@@ -4,6 +4,8 @@ import styles from "./Product.module.scss";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Header from "../Header/Header";
+import Loading from "../Loading/Loading";
+
 const query = ` 
 query {
   arcteryxCollection {
@@ -44,7 +46,7 @@ const Product = (props) => {
     setColor(product && product.imagesCollection.items[1].description);
   }, [product]);
 
-  if (!product) return <span>LOADING...</span>;
+  if (!product) return <Loading />;
 
   const changeColor = (jacketColor) => {
     const filterHero = product.imagesCollection.items
