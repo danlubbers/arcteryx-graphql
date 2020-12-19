@@ -17,10 +17,14 @@ function useContentful(query, slug) {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        const slugProduct = data.arcteryxCollection.items.filter((item) => {
-          return item.slug === slug && item;
-        });
-        setProduct(slugProduct[0]);
+        if (slug) {
+          const slugProduct = data.arcteryxCollection.items.filter((item) => {
+            return item.slug === slug && item;
+          });
+          setProduct(slugProduct[0]);
+        } else {
+          setProduct(data.arcteryxCollection.items);
+        }
       })
       .catch((err) => console.error(err));
   }, [query, slug]);

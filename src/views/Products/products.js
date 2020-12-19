@@ -1,76 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "../Products/products.module.scss";
+import useContentful from "../../hooks/use-contentful";
 import { Link } from "react-router-dom";
+import { query } from "../../utils/contentful-query";
 import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
 
-const query = `
-query {
-  arcteryxCollection {
-    items {
-      title
-      slug
-      description {
-        json
-      }
-      price
-      imagesCollection {
-        items {
-          url
-          title
-          description
-        }
-        }
-      }
-    }
-  }
-  `;
-
-const { REACT_APP_SPACE_ID, REACT_APP_CDA_TOKEN } = process.env;
-const graphqlURL = `https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}/`;
-
 const Products = () => {
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    fetch(graphqlURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${REACT_APP_CDA_TOKEN}`,
-      },
-      body: JSON.stringify({ query }),
-    })
-      .then((res) => res.json())
-      .then(({ data }) => {
-        setProduct(data.arcteryxCollection.items);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  // console.log(product);
-  if (!product) return <Loading />;
+  const { product } = useContentful(query);
 
   return (
     <>
       <Header />
-      <div className={styles.productsContainer}>
-        {product &&
-          product.map((jacket, index) => {
-            return (
-              <div key={`jackets-${index}`}>
-                <Link to={`/product/${jacket.slug}`}>
-                  <p className={styles.title}>{jacket.title}</p>
-                  <img
-                    className={styles.jacketImage}
-                    src={jacket.imagesCollection.items[0].url}
-                    alt={jacket.title}
-                  />
-                </Link>
-              </div>
-            );
-          })}
-      </div>
+      {!product ? (
+        <Loading />
+      ) : (
+        <div className={styles.productsContainer}>
+          {product &&
+            product.map((jacket, index) => {
+              return (
+                <div key={`jackets-${index}`}>
+                  <Link to={`/product/${jacket.slug}`}>
+                    <p className={styles.title}>{jacket.title}</p>
+                    <img
+                      className={styles.jacketImage}
+                      src={jacket.imagesCollection.items[0].url}
+                      alt={jacket.title}
+                    />
+                  </Link>
+                </div>
+              );
+            })}
+        </div>
+      )}
     </>
   );
 };
