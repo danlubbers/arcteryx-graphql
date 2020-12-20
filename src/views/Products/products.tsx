@@ -27,17 +27,17 @@ interface jacketProps {
 }
 
 const Products = () => {
-  const { product } = useContentful(query, null);
+  const { products } = useContentful(query, null);
 
   return (
     <>
       <Header />
-      {!product ? (
+      {!products ? (
         <Loading />
       ) : (
         <div className={styles.productsContainer}>
-          {product &&
-            product.map((jacket: jacketProps, index: number) => {
+          {products &&
+            products.map((jacket: jacketProps, index: number) => {
               return (
                 <div key={`jackets-${index}`}>
                   <Link to={`/product/${jacket.slug}`}>

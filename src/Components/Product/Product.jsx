@@ -17,7 +17,8 @@ const RICHTEXT_OPTIONS = {
 
 const Product = (props) => {
   // Custom HOOK for fetching Contentful Data
-  const { product } = useContentful(query, props.match.params.slug);
+  const slug = props.match.params.slug;
+  const { product } = useContentful(query, slug);
   console.log(product);
   const [jacketColor, setJacketColor] = useState(null);
   const [color, setColor] = useState(null);

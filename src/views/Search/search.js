@@ -7,7 +7,7 @@ import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
 
 const Search = () => {
-  const { product } = useContentful(query);
+  const { products } = useContentful(query);
   const [productsFound, setProductsFound] = useState(false);
   const [renderProducts, setRenderProducts] = useState([]);
 
@@ -17,8 +17,8 @@ const Search = () => {
     searchValues.length > 0 ? setProductsFound(true) : setProductsFound(false);
 
     return (
-      product &&
-      product.filter((product) => {
+      products &&
+      products.filter((product) => {
         setRenderProducts(filterProducts);
         return (
           searchValues
@@ -34,7 +34,7 @@ const Search = () => {
   return (
     <>
       <Header />
-      {!product ? (
+      {!products ? (
         <Loading />
       ) : (
         <div className={styles.searchContainer}>
