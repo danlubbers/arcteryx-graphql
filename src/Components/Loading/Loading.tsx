@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../Loading/Loading.module.scss";
 import logo from "../../assets/logo/arc-teryx.svg";
 
