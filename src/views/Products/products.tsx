@@ -9,6 +9,7 @@ import Loading from "../../Components/Loading/Loading";
 
 const Products = () => {
   const { products } = useContentful(query, null);
+  console.log(products);
 
   return (
     <>
