@@ -3,28 +3,9 @@ import styles from "../Products/products.module.scss";
 import useContentful from "../../hooks/use-contentful";
 import { Link } from "react-router-dom";
 import { query } from "../../utils/contentful-query";
+import { queryProps } from "../../utils/contentful-query-props";
 import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
-
-interface jacketProps {
-  title: string;
-  slug: string;
-  price: number;
-  description: {
-    json: {
-      content: {
-        value: string;
-      }[];
-    };
-  };
-  imagesCollection: {
-    items: {
-      url: string;
-      title: string;
-      description: string;
-    }[];
-  };
-}
 
 const Products = () => {
   const { products } = useContentful(query, null);
@@ -37,7 +18,7 @@ const Products = () => {
       ) : (
         <div className={styles.productsContainer}>
           {products &&
-            products.map((jacket: jacketProps, index: number) => {
+            products.map((jacket: queryProps, index: number) => {
               return (
                 <div key={`jackets-${index}`}>
                   <Link to={`/product/${jacket.slug}`}>

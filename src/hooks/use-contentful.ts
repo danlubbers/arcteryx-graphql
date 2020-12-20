@@ -18,24 +18,24 @@ function useContentful(query: string, slug: string | null) {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        console.log(data);      
+        // console.log(data);      
         if (slug) {
           const slugProduct = data.arcteryxCollection.items.filter((item: {slug: string}) => {
             return item.slug === slug && item;
           });
-          console.log(slugProduct[0]);
+          // console.log(slugProduct[0]);
           
           setProduct(slugProduct[0]);
         } else {
-          console.log(data.arcteryxCollection.items);
+          // console.log(data.arcteryxCollection.items);
           
           setProducts(data.arcteryxCollection.items);
         }
       })
       .catch((err) => console.error(err));
   }, [query, slug]);
-  console.log(product);
-  console.log(products);
+  // console.log(product);
+  // console.log(products);
   
   return { product, products };
 }
