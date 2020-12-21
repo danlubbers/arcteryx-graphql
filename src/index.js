@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import Routes from "./routes/routes";
 import { Router } from "react-router-dom";
+import ScrollToTop from "./utils/scrollToTop";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
@@ -12,6 +13,7 @@ const history = createBrowserHistory();
 ReactDOM.render(
   <React.StrictMode>
     <Router history={history}>
+      <ScrollToTop />
       <Routes />
     </Router>
   </React.StrictMode>,

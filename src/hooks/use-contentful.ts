@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { queryProps } from "../utils/contentful-query-props";
 const { REACT_APP_SPACE_ID, REACT_APP_CDA_TOKEN } = process.env;
 const graphqlURL = `https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}/`;
 
@@ -19,7 +19,7 @@ function useContentful(query: string, slug: string | null) {
       .then((res) => res.json())
       .then(({ data }) => {     
         if (slug) {
-          data.arcteryxCollection.items.filter((item: {slug: string}) => {
+          data.arcteryxCollection.items.filter((item: queryProps) => {
             return item.slug === slug && setProduct(item);
           });          
           ;
