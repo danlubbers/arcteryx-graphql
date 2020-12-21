@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useContentful from "../../hooks/use-contentful";
 import styles from "./Product.module.scss";
 import { query } from "../../utils/contentful-query";
+import { queryProps } from "../../utils/contentful-query-props";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Header from "../Header/Header";
@@ -53,10 +54,8 @@ const Product = (props: any) => {
       product.imagesCollection &&
       // @ts-ignore
       product.imagesCollection.items
-        .filter((jacket: { title: string }) =>
-          jacket.title.includes("thumbnail")
-        )
-        .map((jacket: any, index: number) => {
+        .filter((jacket: queryProps) => jacket.title.includes("thumbnail"))
+        .map((jacket: { url: string; description: string }, index: number) => {
           return (
             <img
               className={styles.thumbnailImages}
