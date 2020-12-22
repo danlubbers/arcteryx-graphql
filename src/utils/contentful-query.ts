@@ -8,6 +8,8 @@ query {
         json
       }
       price
+      gender
+      category
       imagesCollection {
         items {
           url
@@ -18,4 +20,5 @@ query {
       }
     }
   }
+
 `;

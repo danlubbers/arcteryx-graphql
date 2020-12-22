@@ -7,9 +7,14 @@ import { queryProps } from "../../utils/contentful-query-props";
 import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
 
-const Products = () => {
+const Products = (props: any) => {
+  const pathnameGender = props.location.pathname.slice(10);
   const { products } = useContentful(query, null);
-  console.log(products);
+
+  const filterGender = products.filter((product) => {
+    // @ts-ignore
+    return product.gender === pathnameGender;
+  });
 
   return (
     <>
@@ -18,8 +23,8 @@ const Products = () => {
         <Loading />
       ) : (
         <div className={styles.productsContainer}>
-          {products &&
-            products.map((jacket: queryProps, index: number) => {
+          {filterGender &&
+            filterGender.map((jacket: queryProps, index: number) => {
               return (
                 <div key={`jackets-${index}`}>
                   <Link to={`/product/${jacket.slug}`}>

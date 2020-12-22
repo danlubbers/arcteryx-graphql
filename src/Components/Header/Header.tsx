@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const [showNavList, setShowNavList] = useState(false);
+
   return (
     <header className={styles.headerContainer}>
       <Link to="/">
@@ -20,10 +21,12 @@ function Header() {
         </p>
         {showNavList && (
           <ul className={styles.navListWrapper}>
-            <Link to="/products">
+            <Link to="/products/mens">
               <li>Mens</li>
             </Link>
-            <li>Womens</li>
+            <Link to="/products/womens">
+              <li>Womens</li>
+            </Link>
           </ul>
         )}
         <Link to="/search">

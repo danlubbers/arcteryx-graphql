@@ -2,6 +2,8 @@ export interface queryProps {
   title: string;
   slug: string;
   price: number;
+  gender: string;
+  category: string;
   description: {
     json: {
       content: {
