@@ -17,21 +17,16 @@ const Search = () => {
 
     searchValues.length > 0 ? setProductsFound(true) : setProductsFound(false);
 
-    return (
-      products &&
-      products.filter((product: queryProps) => {
-        console.log(product);
-
-        setRenderProducts(filterProducts);
-        return (
-          searchValues
-            .split(" ")
-            .every((word) =>
-              product.title.toLowerCase().includes(word.toLowerCase())
-            ) && filterProducts.push(product)
-        );
-      })
-    );
+    return products.filter((product: queryProps) => {
+      setRenderProducts(filterProducts);
+      return (
+        searchValues
+          .split(" ")
+          .every((word) =>
+            product.title.toLowerCase().includes(word.toLowerCase())
+          ) && filterProducts.push(product)
+      );
+    });
   };
 
   return (
@@ -53,26 +48,20 @@ const Search = () => {
           />
 
           {productsFound && <p>{renderProducts.length} products found!</p>}
-          {productsFound &&
-            renderProducts.map((product: queryProps, index: number) => {
-              console.log("search", product);
-
-              return (
-                <div
-                  className={styles.productsWrapper}
-                  key={`product-${index}`}
-                >
-                  <Link to={`/product/${product.slug}`}>
-                    <p>{product.title}</p>
-                    <img
-                      className={styles.productImage}
-                      src={product.imagesCollection.items[0].url}
-                      alt={product.title}
-                    />
-                  </Link>
-                </div>
-              );
-            })}
+          {renderProducts.map((product: queryProps, index: number) => {
+            return (
+              <div className={styles.productsWrapper} key={`product-${index}`}>
+                <Link to={`/product/${product.slug}`}>
+                  <p>{product.title}</p>
+                  <img
+                    className={styles.productImage}
+                    src={product.imagesCollection.items[0].url}
+                    alt={product.title}
+                  />
+                </Link>
+              </div>
+            );
+          })}
         </div>
       )}
     </>
