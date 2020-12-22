@@ -8,11 +8,11 @@ function Header() {
   const [showNavList, setShowNavList] = useState(false);
 
   return (
-    <header className={styles.headerContainer}>
-      <Link to="/">
-        <img className={styles.logo} src={logo} alt="logo" />
+    <main>
+      <Link to="/" aria-label="arcteryx logo">
+        <img className={styles.logo} src={logo} alt="arcteryx logo" />
       </Link>
-      <nav className={styles.navbarWrapper}>
+      <nav>
         <p
           className={styles.productsText}
           onClick={() => setShowNavList(!showNavList)}
@@ -21,19 +21,27 @@ function Header() {
         </p>
         {showNavList && (
           <ul className={styles.navListWrapper}>
-            <Link to="/products/mens">
+            <Link
+              to="/products/mens"
+              onClick={() => setShowNavList(!showNavList)}
+              aria-label="mens"
+            >
               <li>Mens</li>
             </Link>
-            <Link to="/products/womens">
+            <Link
+              to="/products/womens"
+              onClick={() => setShowNavList(!showNavList)}
+              aria-label="womens"
+            >
               <li>Womens</li>
             </Link>
           </ul>
         )}
-        <Link to="/search">
+        <Link to="/search" aria-label="search">
           <FaSearch className={styles.search} />
         </Link>
       </nav>
-    </header>
+    </main>
   );
 }
 
