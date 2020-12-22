@@ -12,10 +12,12 @@ export interface queryProps {
     };
   };
   imagesCollection: {
-    items: {
-      url: string;
-      title: string;
-      description: string;
-    }[];
+    items: imagesCollectionProps[];
   };
+}
+
+export interface imagesCollectionProps {
+  url: string;
+  title: string;
+  description: string;
 }

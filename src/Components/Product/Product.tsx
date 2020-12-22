@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useContentful from "../../hooks/use-contentful";
 import styles from "./Product.module.scss";
 import { query } from "../../utils/contentful-query";
-import { queryProps } from "../../utils/contentful-query-props";
+import { imagesCollectionProps } from "../../utils/contentful-query-props";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Header from "../Header/Header";
@@ -16,29 +16,20 @@ const RICHTEXT_OPTIONS = {
   },
 };
 
-const Product = (props: any) => {
+const Product = (props: { match: { params: { slug: string } } }) => {
   // Custom HOOK for fetching Contentful Data
   const slug = props.match.params.slug;
-  console.log(slug);
-
   const { product } = useContentful(query, slug);
-  console.log(product);
-  const [jacketColor, setJacketColor] = useState(null);
-  const [color, setColor] = useState(null);
+
+  const [jacketColor, setJacketColor] = useState("");
+  const [color, setColor] = useState("");
   useEffect(() => {
-    setJacketColor(
-      // @ts-ignore
-      product.imagesCollection && product.imagesCollection.items[1].url
-    );
-    setColor(
-      // @ts-ignore
-      product.imagesCollection && product.imagesCollection.items[1].description
-    );
+    setJacketColor(product[0] && product[0].imagesCollection.items[1].url);
+    setColor(product[0] && product[0].imagesCollection.items[1].description);
   }, [product]);
 
   const changeColor = (jacketColor: string) => {
-    // @ts-ignore
-    const filterHero = product.imagesCollection.items
+    const filterHero = product[0].imagesCollection.items
       .filter((heroJacket: { title: string }) =>
         heroJacket.title.includes("hero")
       )
@@ -52,19 +43,18 @@ const Product = (props: any) => {
 
   const thumbnailImages = () => {
     return (
-      // @ts-ignore
-      product.imagesCollection &&
-      // @ts-ignore
-      product.imagesCollection.items
-        .filter((jacket: queryProps) => jacket.title.includes("thumbnail"))
-        .map((jacket: { url: string; description: string }, index: number) => {
+      product[0] &&
+      product[0].imagesCollection.items
+        .filter((jacket: imagesCollectionProps) => {
+          return jacket.title.includes("thumbnail");
+        })
+        .map((jacket: imagesCollectionProps, index: number) => {
           return (
             <img
               className={styles.thumbnailImages}
               key={`products-${index}`}
               src={jacket.url}
-              // @ts-ignore
-              alt={product.title}
+              alt={product[0].title}
               onClick={() => changeColor(jacket.description)}
             />
           );
@@ -79,22 +69,19 @@ const Product = (props: any) => {
         <Loading />
       ) : (
         <div className={styles.productsContainer}>
-          {/*  @ts-ignore */}
-          <p className={styles.title}>{product && product.title}</p>
+          <p className={styles.title}>{product[0] && product[0].title}</p>
           {documentToReactComponents(
             // @ts-ignore
-            product.description && product.description.json,
+            product.description && product[0].description.json,
             RICHTEXT_OPTIONS
           )}
-          {/*  @ts-ignore */}
-          <p className={styles.price}>{`$${product && product.price}`}</p>
+
+          <p className={styles.price}>{`$${product[0] && product[0].price}`}</p>
           {
             <img
               className={styles.productImage}
-              //  @ts-ignore
               src={jacketColor}
-              //  @ts-ignore
-              alt={product && product.title}
+              alt={product[0] && product[0].title}
             />
           }
           <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
