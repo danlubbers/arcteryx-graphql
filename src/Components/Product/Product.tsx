@@ -74,7 +74,7 @@ const Product = (props: { match: { params: { slug: string } } }) => {
           <p className={styles.title}>{productObj && productObj.title}</p>
           {documentToReactComponents(
             // @ts-ignore
-            product.description && productObj.description.json,
+            productObj && productObj.description.json,
             RICHTEXT_OPTIONS
           )}
 
