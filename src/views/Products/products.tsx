@@ -9,11 +9,18 @@ import Loading from "../../Components/Loading/Loading";
 
 const Products = (props: { location: { pathname: string } }) => {
   const pathnameGender = props.location.pathname.split("/")[2];
+  const pathnameCategory = props.location.pathname.split("/")[3];
+  console.log(pathnameCategory);
+
   const { products } = useContentful(query, null);
 
-  const filterProductsByGender = products.filter((product: queryProps) => {
-    return product.gender === pathnameGender;
-  });
+  const filterProductsByGender = products
+    .filter((product: queryProps) => {
+      return product.gender === pathnameGender;
+    })
+    .filter((product: queryProps) => {
+      return product.category === pathnameCategory;
+    });
 
   return (
     <>
