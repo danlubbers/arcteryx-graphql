@@ -8,7 +8,7 @@ import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
 
 const Products = (props: { location: { pathname: string } }) => {
-  const pathnameGender = props.location.pathname.slice(10);
+  const pathnameGender = props.location.pathname.split("/")[2];
   const { products } = useContentful(query, null);
 
   const filterProductsByGender = products.filter((product: queryProps) => {
@@ -17,7 +17,7 @@ const Products = (props: { location: { pathname: string } }) => {
 
   return (
     <>
-      <Header />
+      <Header location={props.location.pathname} />
       {!products ? (
         <Loading />
       ) : (
