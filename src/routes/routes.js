@@ -8,8 +8,10 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" component={App} />
-      <Route exact path="/products/mens" component={Products} />
-      <Route exact path="/products/womens" component={Products} />
+      <Route exact path="/products/mens/clothing" component={Products} />
+      <Route exact path="/products/mens/packs" component={Products} />
+      <Route exact path="/products/womens/clothing" component={Products} />
+      <Route exact path="/products/womens/packs" component={Products} />
       <Route exact path="/product/:slug" component={Product} />
       <Route exact path="/search" component={Search} />
     </Switch>

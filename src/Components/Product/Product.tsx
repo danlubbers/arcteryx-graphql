@@ -26,8 +26,8 @@ const Product = (props: { match: { params: { slug: string } } }) => {
   const [jacketColor, setJacketColor] = useState("");
   const [color, setColor] = useState("");
   useEffect(() => {
-    setJacketColor(productObj && productObj.imagesCollection.items[1].url);
-    setColor(productObj && productObj.imagesCollection.items[1].description);
+    setJacketColor(productObj && productObj.imagesCollection.items[0].url);
+    setColor(productObj && productObj.imagesCollection.items[0].description);
   }, [productObj]);
 
   const changeColor = (jacketColor: string) => {
