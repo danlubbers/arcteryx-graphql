@@ -21,15 +21,17 @@ const Product = (props: { match: { params: { slug: string } } }) => {
   const slug = props.match.params.slug;
   const { product } = useContentful(query, slug);
 
+  const productObj = product[0];
+
   const [jacketColor, setJacketColor] = useState("");
   const [color, setColor] = useState("");
   useEffect(() => {
-    setJacketColor(product[0] && product[0].imagesCollection.items[1].url);
-    setColor(product[0] && product[0].imagesCollection.items[1].description);
-  }, [product]);
+    setJacketColor(productObj && productObj.imagesCollection.items[1].url);
+    setColor(productObj && productObj.imagesCollection.items[1].description);
+  }, [productObj]);
 
   const changeColor = (jacketColor: string) => {
-    const filterHero = product[0].imagesCollection.items
+    const filterHero = productObj.imagesCollection.items
       .filter((heroJacket: { title: string }) =>
         heroJacket.title.includes("hero")
       )
@@ -43,8 +45,8 @@ const Product = (props: { match: { params: { slug: string } } }) => {
 
   const thumbnailImages = () => {
     return (
-      product[0] &&
-      product[0].imagesCollection.items
+      productObj &&
+      productObj.imagesCollection.items
         .filter((jacket: imagesCollectionProps) => {
           return jacket.title.includes("thumbnail");
         })
@@ -54,7 +56,7 @@ const Product = (props: { match: { params: { slug: string } } }) => {
               className={styles.thumbnailImages}
               key={`products-${index}`}
               src={jacket.url}
-              alt={product[0].title}
+              alt={productObj.title}
               onClick={() => changeColor(jacket.description)}
             />
           );
@@ -69,19 +71,19 @@ const Product = (props: { match: { params: { slug: string } } }) => {
         <Loading />
       ) : (
         <div className={styles.productsContainer}>
-          <p className={styles.title}>{product[0] && product[0].title}</p>
+          <p className={styles.title}>{productObj && productObj.title}</p>
           {documentToReactComponents(
             // @ts-ignore
-            product.description && product[0].description.json,
+            product.description && productObj.description.json,
             RICHTEXT_OPTIONS
           )}
 
-          <p className={styles.price}>{`$${product[0] && product[0].price}`}</p>
+          <p className={styles.price}>{`$${productObj && productObj.price}`}</p>
           {
             <img
               className={styles.productImage}
               src={jacketColor}
-              alt={product[0] && product[0].title}
+              alt={productObj && productObj.title}
             />
           }
           <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
