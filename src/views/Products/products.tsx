@@ -14,7 +14,7 @@ const Products = (props: { location: { pathname: string } }) => {
 
   const filterProductsByGender = products
     .filter((product: queryProps) => {
-      return product.gender === pathnameGender;
+      return product.gender === pathnameGender || product.gender === "unisex";
     })
     .filter((product: queryProps) => {
       return product.category === pathnameCategory;
@@ -27,20 +27,22 @@ const Products = (props: { location: { pathname: string } }) => {
         <Loading />
       ) : (
         <div className={styles.productsContainer}>
-          {filterProductsByGender.map((jacket: queryProps, index: number) => {
-            return (
-              <div key={`jackets-${index}`}>
-                <Link to={`/product/${jacket.slug}`}>
-                  <p className={styles.title}>{jacket.title}</p>
-                  <img
-                    className={styles.jacketImage}
-                    src={jacket.imagesCollection.items[0].url}
-                    alt={jacket.title}
-                  />
-                </Link>
-              </div>
-            );
-          })}
+          {filterProductsByGender
+            .map((product: queryProps, index: number) => {
+              return (
+                <div key={`products-${index}`}>
+                  <Link to={`/product/${product.slug}`}>
+                    <p className={styles.title}>{product.title}</p>
+                    <img
+                      className={styles.productImage}
+                      src={product.imagesCollection.items[0].url}
+                      alt={product.title}
+                    />
+                  </Link>
+                </div>
+              );
+            })
+            .reverse()}
         </div>
       )}
     </>
