@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import App from "../App";
-import Product from "../Components/Product/Product";
+import Product from "../views/product/product";
 import Products from "../views/products/products";
 import Search from "../views/Search/search";
 
