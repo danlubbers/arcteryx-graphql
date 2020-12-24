@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import App from "../App";
-import Product from "../Components/Product/Product";
-import Products from "../views/Products/products";
+import Product from "../views/product/product";
+import Products from "../views/products/products";
 import Search from "../views/Search/search";
 
 const Routes = () => {
