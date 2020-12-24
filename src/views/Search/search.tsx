@@ -19,13 +19,27 @@ const Search = () => {
 
     return products.filter((product: queryProps) => {
       setRenderProducts(filterProducts);
+
+      // Regex Search for exact match. EX. "mens" find mens, not womens
       return (
-        searchValues
-          .split(" ")
-          .every((word) =>
-            product.title.toLowerCase().includes(word.toLowerCase())
-          ) && filterProducts.push(product)
+        searchValues.split(" ").every((word) => {
+          const regex = new RegExp(`\\b${word}\\b`, "i");
+          const productTitle = product.title.replace("'", "").toLowerCase();
+          return productTitle.match(regex);
+        }) && filterProducts.push(product)
       );
+
+      /* 
+        Non-regex Search - does not account for substrings. EX. "mens" also retrives womens products
+      */
+      // return (
+      //   searchValues.split(" ").every((word) => {
+      //     return product.title
+      //       .replace("'", "")
+      //       .toLowerCase()
+      //       .includes(word.toLowerCase());
+      //   }) && filterProducts.push(product)
+      // );
     });
   };
 
@@ -48,20 +62,24 @@ const Search = () => {
           />
 
           {productsFound && <p>{renderProducts.length} products found!</p>}
-          {renderProducts.map((product: queryProps, index: number) => {
-            return (
-              <div className={styles.productsWrapper} key={`product-${index}`}>
-                <Link to={`/product/${product.slug}`}>
-                  <p>{product.title}</p>
-                  <img
-                    className={styles.productImage}
-                    src={product.imagesCollection.items[0].url}
-                    alt={product.title}
-                  />
-                </Link>
-              </div>
-            );
-          })}
+          {productsFound &&
+            renderProducts.map((product: queryProps, index: number) => {
+              return (
+                <div
+                  className={styles.productsWrapper}
+                  key={`product-${index}`}
+                >
+                  <Link to={`/product/${product.slug}`}>
+                    <p>{product.title}</p>
+                    <img
+                      className={styles.productImage}
+                      src={product.imagesCollection.items[0].url}
+                      alt={product.title}
+                    />
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       )}
     </>
