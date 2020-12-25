@@ -25,7 +25,7 @@ const Products = (props: { location: { pathname: string } }) => {
       {!products ? (
         <Loading />
       ) : (
-        <RenderProducts filteredProducts={filteredProducts} />
+        <RenderProducts renderProducts={filteredProducts} />
       )}
     </>
   );

@@ -3,9 +3,9 @@ import styles from "../Search/search.module.scss";
 import useContentful from "../../hooks/use-contentful";
 import { query } from "../../utils/contentful-query";
 import { queryProps } from "../../utils/contentful-query-props";
-import { Link } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
+import RenderProducts from "../../Components/RenderProducts/RenderProducts";
 
 const Search = () => {
   const { products } = useContentful(query, null);
@@ -20,7 +20,7 @@ const Search = () => {
     return products.filter((product: queryProps) => {
       setRenderProducts(filterProducts);
 
-      // Regex Search for exact match. EX. "mens" find mens, not womens
+      // Regex Search for exact match. EX. "mens" found mens, not womens
       return (
         searchValues.split(" ").every((word) => {
           const regex = new RegExp(`\\b${word}\\b`, "i");
@@ -50,36 +50,20 @@ const Search = () => {
         <Loading />
       ) : (
         <div className={styles.searchContainer}>
-          <p>search</p>
+          <p>Search for Products</p>
+
           <input
             className={styles.searchInput}
             type="search"
             name="search"
-            placeholder="search for products"
+            placeholder="Ex. Jacket SV"
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               handleSearch(e.currentTarget.value)
             }
           />
 
           {productsFound && <p>{renderProducts.length} products found!</p>}
-          {productsFound &&
-            renderProducts.map((product: queryProps, index: number) => {
-              return (
-                <div
-                  className={styles.productsWrapper}
-                  key={`product-${index}`}
-                >
-                  <Link to={`/product/${product.slug}`}>
-                    <p>{product.title}</p>
-                    <img
-                      className={styles.productImage}
-                      src={product.imagesCollection.items[0].url}
-                      alt={product.title}
-                    />
-                  </Link>
-                </div>
-              );
-            })}
+          {productsFound && <RenderProducts renderProducts={renderProducts} />}
         </div>
       )}
     </>

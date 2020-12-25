@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 import { queryProps } from "../../utils/contentful-query-props";
 
 interface RenderProductsProps {
-  filteredProducts: queryProps[];
+  renderProducts: queryProps[];
 }
 
-const RenderProducts: React.FC<RenderProductsProps> = ({
-  filteredProducts,
-}) => {
+const RenderProducts: React.FC<RenderProductsProps> = ({ renderProducts }) => {
   return (
     <div className={styles.productsContainer}>
-      {filteredProducts
+      {renderProducts
         .map((product: queryProps, index: number) => {
           return (
             <div key={`products-${index}`}>
