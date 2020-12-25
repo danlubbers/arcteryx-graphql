@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../product/product.module.scss";
+import { RouteComponentProps } from "react-router-dom";
 import useContentful from "../../hooks/use-contentful";
 import { query } from "../../utils/contentful-query";
 import { imagesCollectionProps } from "../../utils/contentful-query-props";
@@ -7,9 +8,13 @@ import Header from "../../Components/Header/Header";
 import Loading from "../../Components/Loading/Loading";
 import RenderProduct from "../../Components/RenderProduct/RenderProduct";
 
-const Product = (props: { match: { params: { slug: string } } }) => {
+interface SlugParams {
+  slug: string;
+}
+
+const Product = ({ match }: RouteComponentProps<SlugParams>) => {
   // Custom HOOK for fetching Contentful Data
-  const slug = props.match.params.slug;
+  const slug = match.params.slug;
   const { product } = useContentful(query, slug);
 
   const productObj = product[0];
