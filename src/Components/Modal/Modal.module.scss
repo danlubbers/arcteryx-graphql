@@ -1,0 +1,33 @@
+.modalContainer {
+  position: absolute;
+  width: calc(100% - 80px);
+  margin: 50px 20px 0 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(75, 75, 75, 0.3),
+    rgba(20, 20, 20, 0.8)
+  );
+  z-index: 1;
+
+  @media screen and(min-width: 769px) {
+    max-width: 700px;
+    margin: 50px 200px 0 75px;
+  }
+
+  .title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: "Nunito", sans-serif;
+    color: rgba(225, 225, 225, 1);
+  }
+  .productImage {
+    width: 100%;
+    margin-top: 20px;
+  }
+}

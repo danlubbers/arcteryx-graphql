@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
-import winterScene from "./assets/images/20200307_F20WinterMerch_MtCurrie_Percival_DSC00066shrp-mobile.jpg";
 import Header from "./Components/Header/Header";
+import Modal from "./Components/Modal/Modal";
 
 interface AppProps {
   location: {
@@ -13,7 +13,8 @@ const App: React.FC<AppProps> = (props) => {
   return (
     <div className="App">
       <Header location={props.location.pathname} />
-      <img src={winterScene} alt="winter-scene" />
+      <Modal />
+      <div className="backgroundImage"></div>
     </div>
   );
 };
