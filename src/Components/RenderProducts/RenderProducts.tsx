@@ -15,12 +15,12 @@ const RenderProducts: React.FC<RenderProductsProps> = ({ renderProducts }) => {
           return (
             <div key={`products-${index}`}>
               <Link to={`/product/${product.slug}`}>
-                <p className={styles.title}>{product.title}</p>
                 <img
                   className={styles.productImage}
                   src={product.imagesCollection.items[0].url}
                   alt={product.title}
                 />
+                <p className={styles.title}>{product.title}</p>
               </Link>
             </div>
           );
