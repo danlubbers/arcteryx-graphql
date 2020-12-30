@@ -8,8 +8,13 @@ interface RenderProductsProps {
 }
 
 const RenderProducts: React.FC<RenderProductsProps> = ({ renderProducts }) => {
+  console.log(renderProducts);
+
   return (
     <div className={styles.productsContainer}>
+      {/* <p>
+        {`${renderProducts.length} ${renderProducts[0].gender} Products found!`}{" "}
+      </p> */}
       {renderProducts
         .map((product: queryProps, index: number) => {
           return (
