@@ -16,7 +16,8 @@ const checkForIOS = () => {
   const isIPhone = !!ua.match(/iPhone/i);
   const isIOS = isIPad || isIPhone;
   const isSafari = isIOS && webkit && !ua.match(/CriOS/i); 
-  const prompt = ((isIOS && isSafari)) && (isNaN(days) || days > 7);
+  const prompt = ((isIOS && isSafari)) 
+  // && (isNaN(days) || days > 7);
   
   if (prompt && 'localStorage' in window) {
     localStorage.setItem('installPrompt', today);
@@ -32,5 +33,5 @@ const checkForIOS = () => {
     useEffect(() => {
       setIsIOS(checkForIOS());
     }, [])
-  return useIsIOS;
+  return isIOS;
   }
