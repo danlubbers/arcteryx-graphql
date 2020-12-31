@@ -21,7 +21,15 @@ const Header: React.FC<HeaderProps> = ({ location }) => {
   return (
     <main>
       <Link to="/" aria-label="arcteryx logo">
-        <img className={styles.logo} src={logo} alt="arcteryx logo" />
+        <img
+          className={styles.logo}
+          src={logo}
+          alt="arcteryx logo"
+          onClick={() => {
+            setShowMensNavList(false);
+            setShowWomensNavList(false);
+          }}
+        />
       </Link>
       <nav>
         <div className={styles.productsWrapper}>
