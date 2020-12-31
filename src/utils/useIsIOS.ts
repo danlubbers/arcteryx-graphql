@@ -7,8 +7,6 @@ const checkForIOS = () => {
   if(navigator.standalone) return false;
 
   const today = moment().toDate().toString();
-  const lastPrompt = moment(localStorage.getItem("installPrompt"));
-  const days = moment(today).diff(lastPrompt, 'days');
 
   const ua = window.navigator.userAgent;
   const webkit = !!ua.match(/WebKit/i);
