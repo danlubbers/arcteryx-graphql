@@ -8,8 +8,6 @@ interface RenderProductsProps {
 }
 
 const RenderProducts: React.FC<RenderProductsProps> = ({ renderProducts }) => {
-  console.log(renderProducts);
-
   return (
     <div className={styles.productsContainer}>
       {/* <p>
