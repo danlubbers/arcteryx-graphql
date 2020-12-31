@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import Header from "./Components/Header/Header";
 import PWAModal from "./Components/PWAModal/PWAModal";
@@ -14,11 +14,22 @@ interface AppProps {
 const App: React.FC<AppProps> = (props) => {
   // @ts-ignore
   const { prompt } = useIsIOS();
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleModalClick = () => {
+    setOpenModal(true);
+  };
+
   return (
     <div className="App">
       <Header location={props.location.pathname} />
-      {prompt && <PWAModal open={true} />}
-      <Modal />
+      {/* Prompt is causing a memory leak error */}
+      {prompt && !openModal ? (
+        <PWAModal handleModalClick={handleModalClick} />
+      ) : (
+        <Modal />
+      )}
+
       <div className="backgroundImage"></div>
     </div>
   );
