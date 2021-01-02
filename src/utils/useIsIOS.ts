@@ -6,9 +6,9 @@ const checkForIOS = () => {
   // @ts-ignore
   if(navigator.standalone) return false;
 
-  const today = moment().toDate().toString();
-  const lastPrompt = moment(localStorage.getItem("installPrompt"));
-  const days = moment(today).diff(lastPrompt, 'days');
+  const today = moment(new Date(), "ddd MMM DD YYYY HH:mm:ss Z+HHmm").toDate().toString();
+  const lastPrompt = moment(localStorage.getItem("installPrompt"), "ddd MMM DD YYYY HH:mm:ss Z+HHmm");
+  const days = moment(today, "ddd MMM DD YYYY HH:mm:ss Z+HHmm").diff(lastPrompt, 'days');
 
   const ua = window.navigator.userAgent;
   const webkit = !!ua.match(/WebKit/i);
