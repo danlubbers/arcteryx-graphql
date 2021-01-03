@@ -23,7 +23,7 @@ const App: React.FC<AppProps> = (props) => {
   return (
     <div className="App">
       <Header location={props.location.pathname} />
-      {/* Prompt is causing a memory leak error */}
+
       {prompt && !openModal ? (
         <PWAModal handleModalClick={handleModalClick} />
       ) : (

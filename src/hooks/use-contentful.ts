@@ -8,6 +8,11 @@ function useContentful(query: string, slug: string | null) {
   const [product, setProduct] = useState<queryProps[]>([]);
 
   useEffect(() => {
+    /* 
+      mounted variabel with the cleanup function on line:39 fixed the memory leak when the application loads with the PWA Modal on the Home screen
+    */
+    let mounted = false;
+
     fetch(graphqlURL, {
       method: "POST",
       headers: {
@@ -24,12 +29,16 @@ function useContentful(query: string, slug: string | null) {
           });          
           setProduct(filteredProduct);
           
-        } else {
+        } else if(!mounted){
           
           setProducts(data.arcteryxCollection.items);
         }
       })
       .catch((err) => console.error(err));
+
+      return () => {
+        mounted = true;
+      }
   }, [query, slug]);
   
   return { product, products };
