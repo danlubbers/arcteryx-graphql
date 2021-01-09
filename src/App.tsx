@@ -5,6 +5,8 @@ import PWAModal from "./Components/PWAModal/PWAModal";
 import Modal from "./Components/Modal/Modal";
 import useIsIOS from "./utils/useIsIOS";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 interface AppProps {
   location: {
     pathname: string;
@@ -12,6 +14,7 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = (props) => {
+  const pathname = props.location && props.location.pathname;
   // @ts-ignore
   const { prompt } = useIsIOS();
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -21,17 +24,19 @@ const App: React.FC<AppProps> = (props) => {
   };
 
   return (
-    <div className="App">
-      <Header location={props.location.pathname} />
+    <Router>
+      <div className="App">
+        <Header location={pathname} />
 
-      {prompt && !openModal ? (
-        <PWAModal handleModalClick={handleModalClick} />
-      ) : (
-        <Modal />
-      )}
+        {prompt && !openModal ? (
+          <PWAModal handleModalClick={handleModalClick} />
+        ) : (
+          <Modal />
+        )}
 
-      <div className="backgroundImage"></div>
-    </div>
+        <div className="backgroundImage"></div>
+      </div>
+    </Router>
   );
 };
 
