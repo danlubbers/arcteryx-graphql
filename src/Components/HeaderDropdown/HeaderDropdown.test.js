@@ -33,3 +33,14 @@ test("User clicked dynamic gender link to clothing", () => {
   fireEvent.click(getByTestId(`gender-clothing`));
   expect(history.push).toHaveBeenCalledWith(`/products/${gender}/clothing`);
 });
+
+test("User clicked dynamic gender link to packs", () => {
+  history.push = jest.fn();
+  const { getByTestId, gender } = render(
+    <Router history={history}>
+      <HeaderDropdown />
+    </Router>
+  );
+  fireEvent.click(getByTestId(`gender-packs`));
+  expect(history.push).toHaveBeenCalledWith(`/products/${gender}/packs`);
+});
