@@ -41,6 +41,7 @@ exports[`Renders correctly 1`] = `
       >
         <svg
           className="search"
+          data-testid="search"
           fill="currentColor"
           height="1em"
           stroke="currentColor"

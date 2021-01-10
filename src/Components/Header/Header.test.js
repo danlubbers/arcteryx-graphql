@@ -13,3 +13,23 @@ test("user clicked mens", () => {
   );
   fireEvent.click(getByText("Mens"));
 });
+
+test("user clicked womens", () => {
+  const { getByText } = render(
+    <Router history={history}>
+      <Header />
+    </Router>
+  );
+  fireEvent.click(getByText("Womens"));
+});
+
+test("user clicked Search Icon", () => {
+  history.push = jest.fn();
+  const { getByTestId } = render(
+    <Router history={history}>
+      <Header />
+    </Router>
+  );
+  fireEvent.click(getByTestId("search"));
+  expect(history.push).toHaveBeenCalledWith("/search");
+});

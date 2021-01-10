@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ location }) => {
           {showWomensNavList && <HeaderDropdown gender="womens" />}
         </div>
         <Link to="/search" aria-label="search">
-          <FaSearch className={styles.search} />
+          <FaSearch className={styles.search} data-testid="search" />
         </Link>
       </nav>
     </main>
