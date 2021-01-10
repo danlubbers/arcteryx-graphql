@@ -22,3 +22,14 @@ test("user clicked Packs", () => {
   );
   fireEvent.click(getByText("Packs"));
 });
+
+test("user clicked Search Icon", () => {
+  history.push = jest.fn();
+  const { getByTestId, gender } = render(
+    <Router history={history}>
+      <HeaderDropdown />
+    </Router>
+  );
+  fireEvent.click(getByTestId(`gender-clothing`));
+  expect(history.push).toHaveBeenCalledWith(`/products/${gender}/clothing`);
+});
