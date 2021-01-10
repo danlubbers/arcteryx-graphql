@@ -1,15 +1,15 @@
-import { render } from "@testing-library/react";
+import renderer from "react-test-renderer";
 import App from "./App";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
-test("Parent Component", () => {
-  const { getByText } = render(
+it("Renders correctly", () => {
+  const tree = renderer.create(
     <Router history={history}>
       <App />
     </Router>
   );
-  expect(getByText("Header")).toEqual(true);
+  expect(tree).toMatchSnapshot();
 });
