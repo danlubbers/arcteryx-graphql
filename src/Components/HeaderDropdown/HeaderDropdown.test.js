@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
-test("user clicked Clothing", () => {
+test("Clothing is a category", () => {
   const { getByText } = render(
     <Router history={history}>
       <HeaderDropdown />
@@ -14,7 +14,7 @@ test("user clicked Clothing", () => {
   fireEvent.click(getByText("Clothing"));
 });
 
-test("user clicked Packs", () => {
+test("Packs is a category", () => {
   const { getByText } = render(
     <Router history={history}>
       <HeaderDropdown />
@@ -23,7 +23,7 @@ test("user clicked Packs", () => {
   fireEvent.click(getByText("Packs"));
 });
 
-test("user clicked Search Icon", () => {
+test("User clicked dynamic gender link to clothing", () => {
   history.push = jest.fn();
   const { getByTestId, gender } = render(
     <Router history={history}>
