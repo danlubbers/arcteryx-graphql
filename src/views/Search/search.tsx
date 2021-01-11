@@ -60,6 +60,7 @@ const Search = () => {
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               handleSearch(e.currentTarget.value)
             }
+            data-testid="searchInput"
           />
 
           {productsFound && <p>{renderProducts.length} products found!</p>}

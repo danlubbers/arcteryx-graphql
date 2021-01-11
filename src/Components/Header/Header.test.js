@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
-test("user clicked mens", () => {
+test("user clicked Mens", () => {
   const { getByText } = render(
     <Router history={history}>
       <Header />
@@ -14,7 +14,7 @@ test("user clicked mens", () => {
   fireEvent.click(getByText("Mens"));
 });
 
-test("user clicked womens", () => {
+test("user clicked Womens", () => {
   const { getByText } = render(
     <Router history={history}>
       <Header />

@@ -44,3 +44,15 @@ test("User clicked dynamic gender link to packs", () => {
   fireEvent.click(getByTestId(`gender-packs`));
   expect(history.push).toHaveBeenCalledWith(`/products/${gender}/packs`);
 });
+
+// Todo: Add category in HeaderDropdown
+// test("User clicked dynamic gender link to footwear", () => {
+//   history.push = jest.fn();
+//   const { getByTestId, gender } = render(
+//     <Router history={history}>
+//       <HeaderDropdown />
+//     </Router>
+//   );
+//   fireEvent.click(getByTestId(`gender-footwear`));
+//   expect(history.push).toHaveBeenCalledWith(`/products/${gender}/footwear`);
+// });
