@@ -47,7 +47,7 @@ const Search = () => {
     <>
       <Header />
       {!products ? (
-        <Loading />
+        <Loading hasProduct={true} />
       ) : (
         <div className={styles.searchContainer}>
           <p>Search for Products</p>

@@ -23,6 +23,15 @@ test("Packs is a category", () => {
   fireEvent.click(getByText("Packs"));
 });
 
+test("Footwear is a category", () => {
+  const { getByText } = render(
+    <Router history={history}>
+      <HeaderDropdown />
+    </Router>
+  );
+  fireEvent.click(getByText("Footwear"));
+});
+
 test("User clicked dynamic gender link to clothing", () => {
   history.push = jest.fn();
   const { getByTestId, gender } = render(
@@ -46,13 +55,13 @@ test("User clicked dynamic gender link to packs", () => {
 });
 
 // Todo: Add category in HeaderDropdown
-// test("User clicked dynamic gender link to footwear", () => {
-//   history.push = jest.fn();
-//   const { getByTestId, gender } = render(
-//     <Router history={history}>
-//       <HeaderDropdown />
-//     </Router>
-//   );
-//   fireEvent.click(getByTestId(`gender-footwear`));
-//   expect(history.push).toHaveBeenCalledWith(`/products/${gender}/footwear`);
-// });
+test("User clicked dynamic gender link to footwear", () => {
+  history.push = jest.fn();
+  const { getByTestId, gender } = render(
+    <Router history={history}>
+      <HeaderDropdown />
+    </Router>
+  );
+  fireEvent.click(getByTestId(`gender-footwear`));
+  expect(history.push).toHaveBeenCalledWith(`/products/${gender}/footwear`);
+});
