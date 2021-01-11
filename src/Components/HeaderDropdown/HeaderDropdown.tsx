@@ -12,10 +12,15 @@ const HeaderDropdown: React.FC<HeaderDropdownProps> = ({ gender }) => {
       <Link
         to={`/products/${gender}/clothing`}
         aria-label={`${gender} clothing`}
+        data-testid={`gender-clothing`}
       >
         <li>Clothing</li>
       </Link>
-      <Link to={`/products/${gender}/packs`} aria-label={`${gender} packs`}>
+      <Link
+        to={`/products/${gender}/packs`}
+        aria-label={`${gender} packs`}
+        data-testid={`gender-packs`}
+      >
         <li>Packs</li>
       </Link>
     </ul>

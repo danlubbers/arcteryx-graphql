@@ -12,6 +12,7 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = (props) => {
+  const pathname = props.location && props.location.pathname;
   // @ts-ignore
   const { prompt } = useIsIOS();
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -22,7 +23,7 @@ const App: React.FC<AppProps> = (props) => {
 
   return (
     <div className="App">
-      <Header location={props.location.pathname} />
+      <Header location={pathname} />
 
       {prompt && !openModal ? (
         <PWAModal handleModalClick={handleModalClick} />
