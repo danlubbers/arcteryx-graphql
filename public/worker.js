@@ -1,5 +1,5 @@
 let CACHE_NAME = "Arc-teryx";
-let urlsToCache = ["/", "/completed"];
+let urlsToCache = ["/"];
 
 // Install a service worker
 self.addEventListener("install", (event) => {
