@@ -1,11 +1,19 @@
 import styles from "../Loading/Loading.module.scss";
 import logo from "../../assets/logo/arc-teryx.svg";
 
-const Loading = () => {
+interface LoadingProps {
+  hasProduct: boolean;
+}
+
+const Loading: React.FC<LoadingProps> = ({ hasProduct }) => {
   return (
     <div className={styles.loadingContainer}>
       <img className={styles.logo} src={logo} alt="logo" />
-      <p>Content is Loading...</p>
+      {hasProduct ? (
+        <p>Content is Loading...</p>
+      ) : (
+        <p>No Products have been found!</p>
+      )}
     </div>
   );
 };

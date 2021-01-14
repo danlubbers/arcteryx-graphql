@@ -62,7 +62,7 @@ const Product = ({ match }: RouteComponentProps<SlugParams>) => {
     <>
       <Header />
       {!product ? (
-        <Loading />
+        <Loading hasProduct={true} />
       ) : (
         <RenderProduct
           product={productObj}

@@ -18,14 +18,19 @@ const Products = (props: { location: { pathname: string } }) => {
     .filter((product: queryProps) => {
       return product.category === pathnameCategory;
     });
+  console.log(filteredProducts);
 
   return (
     <>
       <Header location={props.location.pathname} />
       {!products ? (
-        <Loading />
-      ) : (
+        <Loading hasProduct={true} />
+      ) : filteredProducts.length > 0 ? (
         <RenderProducts renderProducts={filteredProducts} />
+      ) : (
+        <>
+          <Loading hasProduct={false} />
+        </>
       )}
     </>
   );
