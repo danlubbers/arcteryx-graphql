@@ -27,7 +27,9 @@ const RenderProduct: React.FC<RenderProductProps> = ({
 }) => {
   return (
     <div className={styles.productsContainer}>
-      <p className={styles.title}>{product && product.title}</p>
+      <p className={styles.title} data-testid="title">
+        {product && product.title}
+      </p>
       {documentToReactComponents(
         // @ts-ignore
         product && product.description.json,
