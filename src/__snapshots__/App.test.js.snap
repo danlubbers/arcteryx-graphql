@@ -8,6 +8,7 @@ exports[`Renders correctly 1`] = `
     <main>
       <a
         aria-label="arcteryx logo"
+        data-testid="home-page-link"
         href="/"
       >
         <img
