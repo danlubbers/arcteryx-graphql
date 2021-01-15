@@ -1,15 +1,23 @@
-import renderer from "react-test-renderer";
+import { render, cleanup } from "@testing-library/react";
 import App from "./App";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
+afterEach(cleanup);
+
 it("Renders correctly", () => {
-  const tree = renderer.create(
+  const { asFragment } = render(
     <Router history={history}>
       <App />
     </Router>
   );
-  expect(tree).toMatchSnapshot();
+  expect(
+    asFragment(
+      <Router history={history}>
+        <App />
+      </Router>
+    )
+  ).toMatchSnapshot();
 });

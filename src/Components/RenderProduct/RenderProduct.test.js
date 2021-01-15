@@ -1,26 +1,13 @@
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { render, cleanup, screen } from "@testing-library/react";
 import RenderProduct from "./RenderProduct";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+afterEach(cleanup);
 
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
-it("renders product data", async () => {
+describe("renders product data", () => {
   const productData = {
     title: "ALPHA SV JACKET MEN'S",
     description:
@@ -30,28 +17,14 @@ it("renders product data", async () => {
     color: "Dynasty",
   };
 
-  jest.spyOn(global, "fetch").mockImplementation(() =>
-    Promise.resolve({
-      json: () => Promise.resolve(productData),
-    })
-  );
-
-  await act(async () => {
+  test("check title", () => {
     render(
       <Router history={history}>
         <RenderProduct />
-      </Router>,
-      container
+      </Router>
     );
+
+    // console.log(screen.getByTestId("title"));
+    // expect(screen.getByTestId("title")).toHaveTextContent(productData.title);
   });
-
-  console.log(
-    "render",
-    container.querySelectorAll("[data-testid='title']").textContent
-  );
-  expect(container.querySelector("[data-testid='title']").textContent).toBe(
-    productData.title
-  );
-
-  global.fetch.mockRestore();
 });
