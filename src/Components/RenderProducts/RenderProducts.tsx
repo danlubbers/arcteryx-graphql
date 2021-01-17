@@ -23,7 +23,9 @@ const RenderProducts: React.FC<RenderProductsProps> = ({ renderProducts }) => {
                   src={product.imagesCollection.items[0].url}
                   alt={product.title}
                 />
-                <p className={styles.title}>{product.title}</p>
+                <p className={styles.title} data-testid="product-title">
+                  {product.title}
+                </p>
               </Link>
             </div>
           );
