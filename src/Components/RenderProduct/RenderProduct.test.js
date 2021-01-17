@@ -5,7 +5,11 @@ import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  console.error.mockClear();
+});
+console.error = jest.fn();
 
 describe("renders product data", () => {
   const productData = {
@@ -13,18 +17,18 @@ describe("renders product data", () => {
     description:
       "Our most durable GORE-TEX PRO shell is designed for severe (SV) alpine conditions. Alpha Series: Climbing and alpine focused systems. | SV: Severe Weather.",
     price: 799.0,
-    image: "testImage",
+    image: "testImage.jpg",
     color: "Dynasty",
   };
 
-  test("check title", () => {
+  test("renders title", () => {
     render(
       <Router history={history}>
-        <RenderProduct />
+        <RenderProduct product={productData} />
       </Router>
     );
-
-    // console.log(screen.getByTestId("title"));
-    // expect(screen.getByTestId("title")).toHaveTextContent(productData.title);
+    expect(console.error).not.toHaveBeenCalled();
+    expect(screen.getByTestId("title").textContent).toBe(productData.title);
+    // debug();
   });
 });
