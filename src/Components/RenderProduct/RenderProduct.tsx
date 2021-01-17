@@ -36,12 +36,15 @@ const RenderProduct: React.FC<RenderProductProps> = ({
         RICHTEXT_OPTIONS
       )}
 
-      <p className={styles.price}>{`$${product && product.price}`}</p>
+      <p className={styles.price} data-testid="price">{`$${
+        product && product.price
+      }`}</p>
       {
         <img
           className={styles.productImage}
           src={productColor}
           alt={product && product.title}
+          data-testid="image"
         />
       }
       <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>

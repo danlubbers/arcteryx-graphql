@@ -31,4 +31,24 @@ describe("renders product data", () => {
     expect(screen.getByTestId("title").textContent).toBe(productData.title);
     // debug();
   });
+
+  test("renders price", () => {
+    render(
+      <Router history={history}>
+        <RenderProduct product={productData} />
+      </Router>
+    );
+    expect(screen.getByTestId("price").textContent).toBe(
+      `$${productData.price}`
+    );
+  });
+
+  // test("renders image", () => {
+  //   render(
+  //     <Router history={history}>
+  //       <RenderProduct productColor={productData} />
+  //     </Router>
+  //   );
+  //   expect(screen.getByTestId("image").src).toBe(`${productData.image}`);
+  // });
 });
