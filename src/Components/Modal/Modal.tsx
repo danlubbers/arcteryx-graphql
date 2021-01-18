@@ -9,7 +9,7 @@ const Modal = () => {
   const randomProduct = products[Math.floor(Math.random() * products.length)];
 
   return (
-    <div className={styles.modalContainer}>
+    <div className={styles.modalContainer} data-testid="modal-component">
       <Link to={`/product/${randomProduct && randomProduct.slug}`}>
         <p className={styles.title}>{randomProduct && randomProduct.title}</p>
         <img

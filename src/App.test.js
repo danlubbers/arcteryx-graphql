@@ -7,7 +7,7 @@ const history = createBrowserHistory();
 
 afterEach(cleanup);
 
-it("Renders correctly", () => {
+test("<App />, renders correctly", () => {
   const { asFragment } = render(
     <Router history={history}>
       <App />
@@ -20,4 +20,33 @@ it("Renders correctly", () => {
       </Router>
     )
   ).toMatchSnapshot();
+});
+
+test("<App />, checks for header component", () => {
+  const { debug, getByTestId } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  expect(getByTestId("header-component")).toBeTruthy();
+});
+
+test("<App />, checks for modal component", () => {
+  const { debug, getByTestId } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  expect(getByTestId("modal-component")).toBeTruthy();
+});
+
+test("<App />, checks for a background image", () => {
+  const { debug, getByTestId } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+  expect(getByTestId("background-image")).toBeTruthy();
 });
