@@ -48,7 +48,7 @@ test("<RenderProducts /> checks slug link and renders image & title", async () =
       <RenderProducts renderProducts={productsData} />
     </Router>
   );
-  await waitFor(() => getByTestId("product-slug"));
+  await waitFor(() => getAllByTestId("product-slug"));
 
   expect(getByTestId("product-slug").getAttribute("href")).toBe(
     `/product/${productsData[0].slug}`
@@ -57,6 +57,6 @@ test("<RenderProducts /> checks slug link and renders image & title", async () =
     `http://localhost/${productsData[0].imagesCollection.items[0].url}`
   );
   expect(getByTestId("product-title").textContent).toBe(productsData[0].title);
-  console.log(getAllByTestId("product-slug").length);
+  expect(getAllByTestId("product-slug").length).toBe(1);
   // debug();
 });
