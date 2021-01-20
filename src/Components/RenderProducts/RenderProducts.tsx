@@ -17,13 +17,16 @@ const RenderProducts: React.FC<RenderProductsProps> = ({ renderProducts }) => {
         .map((product: queryProps, index: number) => {
           return (
             <div key={`products-${index}`}>
-              <Link to={`/product/${product.slug}`}>
+              <Link to={`/product/${product.slug}`} data-testid="product-slug">
                 <img
                   className={styles.productImage}
                   src={product.imagesCollection.items[0].url}
                   alt={product.title}
+                  data-testid="product-image"
                 />
-                <p className={styles.title}>{product.title}</p>
+                <p className={styles.title} data-testid="product-title">
+                  {product.title}
+                </p>
               </Link>
             </div>
           );

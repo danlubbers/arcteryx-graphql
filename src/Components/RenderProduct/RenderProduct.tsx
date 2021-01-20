@@ -27,19 +27,24 @@ const RenderProduct: React.FC<RenderProductProps> = ({
 }) => {
   return (
     <div className={styles.productsContainer}>
-      <p className={styles.title}>{product && product.title}</p>
+      <p className={styles.title} data-testid="title">
+        {product && product.title}
+      </p>
       {documentToReactComponents(
         // @ts-ignore
         product && product.description.json,
         RICHTEXT_OPTIONS
       )}
 
-      <p className={styles.price}>{`$${product && product.price}`}</p>
+      <p className={styles.price} data-testid="price">{`$${
+        product && product.price
+      }`}</p>
       {
         <img
           className={styles.productImage}
           src={productColor}
           alt={product && product.title}
+          data-testid="image"
         />
       }
       <p className={styles.selectColor}>{`Select a colour: ${color}`}</p>
