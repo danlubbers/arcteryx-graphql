@@ -31,7 +31,7 @@ const App: React.FC<AppProps> = (props) => {
         <Modal />
       )}
 
-      <div className="backgroundImage"></div>
+      <div className="backgroundImage" data-testid="background-image"></div>
     </div>
   );
 };

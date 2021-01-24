@@ -10,7 +10,10 @@ interface PWAModalProps {
 const PWAModal: React.FC<PWAModalProps> = ({ handleModalClick }) => {
   return (
     <>
-      <div className={styles.pwaModalContainer}>
+      <div
+        className={styles.pwaModalContainer}
+        data-testid="pwa-modal-component"
+      >
         <img className={styles.logo} src={ArcLogo} alt="arcteryx-logo" />
         <h4>Install Arc'teryx</h4>
         <p className={styles.installText}>

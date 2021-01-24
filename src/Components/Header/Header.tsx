@@ -18,8 +18,8 @@ const Header: React.FC<HeaderProps> = ({ location }) => {
   }, [location]);
 
   return (
-    <main>
-      <Link to="/" aria-label="arcteryx logo">
+    <main data-testid="header-component">
+      <Link data-testid="home-page-link" to="/" aria-label="arcteryx logo">
         <img
           className={styles.logo}
           src={logo}
