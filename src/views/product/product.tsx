@@ -58,6 +58,7 @@ const Product = ({ match }: RouteComponentProps<SlugParams>) => {
         );
       });
 
+  if (!product) return null;
   return (
     <>
       <Header />
