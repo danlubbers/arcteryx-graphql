@@ -14,26 +14,29 @@ const PWAModal: React.FC<PWAModalProps> = ({ handleModalClick }) => {
         className={styles.pwaModalContainer}
         data-testid="pwa-modal-component"
       >
-        <img className={styles.logo} src={ArcLogo} alt="arcteryx-logo" />
-        <h4>Install Arc'teryx</h4>
-        <p className={styles.installText}>
-          Install this application on your homescreen for a better user
-          experience
-        </p>
-        <p className={styles.tapText}>
-          Tap{" "}
-          <img
-            className={styles.appleShareIcon}
-            src={AppleShareIcon}
-            alt="apple share icon"
-          />{" "}
-          then scroll down and tap{" "}
-        </p>
-        <p className={styles.addToHomeScreen}>"Add to Home Screen"</p>
+        <div className={styles.pwaModalWrapper}>
+          <img className={styles.logo} src={ArcLogo} alt="arcteryx-logo" />
+          <h4>Install Arc'teryx</h4>
+          <p className={styles.installText}>
+            Install this application on your homescreen for a better user
+            experience
+          </p>
+          <p className={styles.tapText}>
+            Tap{" "}
+            <img
+              className={styles.appleShareIcon}
+              src={AppleShareIcon}
+              alt="apple share icon"
+            />{" "}
+            then scroll down and tap{" "}
+          </p>
+          <p className={styles.addToHomeScreen}>"Add to Home Screen"</p>
 
-        <button className={styles.closeBtn} onClick={handleModalClick}>
-          CLOSE
-        </button>
+          <button className={styles.closeBtn} onClick={handleModalClick}>
+            CLOSE
+          </button>
+        </div>
+        <div className={styles.background} />
       </div>
     </>
   );
