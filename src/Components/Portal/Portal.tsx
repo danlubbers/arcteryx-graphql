@@ -11,8 +11,10 @@ const Portal: React.FC = (props) => {
 
   useEffect(() => {
     portalRoot?.appendChild(element);
+    document.body.style.overflow = "hidden";
     return () => {
       portalRoot?.removeChild(element);
+      document.body.style.overflow = "unset";
     };
   }, [element]);
 
