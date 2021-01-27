@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../Header/Header.module.scss";
 import logo from "../../assets/logo/arc-teryx.svg";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 interface HeaderProps {
@@ -33,7 +33,9 @@ const Header: React.FC<HeaderProps> = ({ location }) => {
       <nav>
         <div className={styles.productsWrapper}>
           <p
-            className={styles.productsText}
+            className={
+              showMensNavList ? styles.strikethrough : styles.productsText
+            }
             onClick={() => {
               setShowMensNavList(!showMensNavList);
               setShowWomensNavList(false);
@@ -41,9 +43,16 @@ const Header: React.FC<HeaderProps> = ({ location }) => {
           >
             Mens
           </p>
+          <FaAngleDown
+            className={
+              showMensNavList ? styles.angleDownRotate : styles.angleDown
+            }
+          />
           {showMensNavList && <HeaderDropdown gender="mens" />}
           <p
-            className={styles.productsText}
+            className={
+              showWomensNavList ? styles.strikethrough : styles.productsText
+            }
             onClick={() => {
               setShowWomensNavList(!showWomensNavList);
               setShowMensNavList(false);
@@ -51,6 +60,11 @@ const Header: React.FC<HeaderProps> = ({ location }) => {
           >
             Womens
           </p>
+          <FaAngleDown
+            className={
+              showWomensNavList ? styles.angleDownRotate : styles.angleDown
+            }
+          />
           {showWomensNavList && <HeaderDropdown gender="womens" />}
         </div>
         <Link to="/search" aria-label="search">
