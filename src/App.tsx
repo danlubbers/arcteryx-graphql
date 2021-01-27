@@ -4,6 +4,7 @@ import Header from "./Components/Header/Header";
 import PWAModal from "./Components/PWAModal/PWAModal";
 import Modal from "./Components/Modal/Modal";
 import useIsIOS from "./utils/useIsIOS";
+import Portal from "./Components/Portal/Portal";
 
 interface AppProps {
   location: {
@@ -26,7 +27,9 @@ const App: React.FC<AppProps> = (props) => {
       <Header location={pathname} />
 
       {prompt && !openModal ? (
-        <PWAModal handleModalClick={handleModalClick} />
+        <Portal>
+          <PWAModal handleModalClick={handleModalClick} />
+        </Portal>
       ) : (
         <Modal />
       )}
