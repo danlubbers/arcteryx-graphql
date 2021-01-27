@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./FullscreenImage.module.scss";
 import Portal from "../Portal/Portal";
+import ScrollToTop from "../../utils/scrollToTop";
 import { FaTimes } from "react-icons/fa";
 
 interface FullscreenImageProps {
@@ -17,6 +18,7 @@ const FullscreenImage: React.FC<FullscreenImageProps> = ({
   return (
     <>
       <Portal>
+        <ScrollToTop />
         <div className={styles.fullscreenImageContainer}>
           <div className={styles.iconWrapper}>
             <FaTimes

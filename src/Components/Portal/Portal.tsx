@@ -5,7 +5,6 @@ const portalRoot = document.getElementById("portal");
 
 const Portal: React.FC = (props) => {
   const { children } = props;
-  console.log(children);
 
   const element = document.createElement("div");
 

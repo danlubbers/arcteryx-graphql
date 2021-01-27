@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    // background-color: rgb(252, 252, 164);
+
     .icon {
       padding: 10px;
       font-size: 30px;
@@ -20,10 +20,10 @@
 
   .imageWrapper {
     height: calc(100% - 50px);
+    padding: 0 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: lightblue;
 
     .productImage {
       width: 100%;

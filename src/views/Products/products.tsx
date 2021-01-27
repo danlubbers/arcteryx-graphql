@@ -19,9 +19,8 @@ const Products = (props: { location: { pathname: string } }) => {
       return product.category === pathnameCategory;
     });
 
-  console.log(filteredProducts);
-
   if (!filteredProducts) return null;
+
   return (
     <>
       <Header location={props.location.pathname} />
