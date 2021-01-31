@@ -27,9 +27,26 @@ main {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+
+      .angleDown {
+        padding-top: 5px;
+        transform: rotate(-360deg);
+        transition: transform 300ms ease;
+      }
+      .angleDownRotate {
+        padding-top: 5px;
+        transform: rotate(-180deg);
+        transition: transform 300ms ease;
+      }
+
       .productsText {
         margin: 0 5px;
         cursor: pointer;
+      }
+
+      .strikethrough {
+        @extend .productsText;
+        text-decoration: line-through;
       }
     }
 
